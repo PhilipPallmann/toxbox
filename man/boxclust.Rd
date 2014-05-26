@@ -7,7 +7,7 @@ Enhanced Boxplots for Clustered Data
 A function for drawing jittered boxplots with error bars using the ggplot2 framework. This is especially illustrative for toxicological data with substructures such as technical replicates, clustering, or subsampling.
 }
 \usage{
-boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatment", ylabel = "Outcome", option = "dotplot", legpos = "top", psize = 2.5, hjitter = 0, vlines = "none", labelsize = 12, titlesize = 15, white = F)
+boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatment", ylabel = "Outcome", option = "dotplot", legpos = "top", psize = 2.5, hjitter = 0, vlines = "none", labelsize = 12, titlesize = 15, white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
@@ -51,7 +51,8 @@ boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
 ##### Option 2: Distinguish clusters by colors #####
 
 ### Reduce the number of clusters (for illustration)
-ratpup2 <- subset(ratpup, litter %in% c(1, 4, 13, 17, 22, 24))
+#ratpup2 <- subset(ratpup, litter %in% c(1, 4, 13, 17, 22, 24))
+ratpup2 <- subset(ratpup, litter==1 | litter==4 | litter==13 | litter==17 | litter==22 | litter==24)
 
 # Add some horizontal noise
 boxclust(data=ratpup2, outcome="weight", treatment="treatment", cluster="litter",
@@ -68,12 +69,14 @@ boxclust(data=ratpup2, outcome="weight", treatment="treatment", cluster="litter"
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
          xlabel="", ylabel="Pup weight [g]")
 
-# With gentle horizontal jittering, faint auxiliary lines in the background, sexes distinguished by point shapes, slightly larger points, and the legend on the right
+# With gentle horizontal jittering, faint auxiliary lines in the background,
+# sexes distinguished by point shapes, slightly larger points, and the legend on the right
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
          xlabel="", ylabel="Pup weight [g]", legpos="right", psize=3, hjitter=0.01, vlines="bg")
 
-# With gentle horizontal jittering, faint auxiliary lines in the foreground, sexes distinguished by point shapes, slightly smaller points, and white background
+# With gentle horizontal jittering, faint auxiliary lines in the foreground,
+# sexes distinguished by point shapes, slightly smaller points, and white background
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
-         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg", white=T)
+         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg", white=TRUE)
 }
 \keyword{~hplot}

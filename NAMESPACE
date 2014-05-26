@@ -1,2 +1,2 @@
-import(ggplot2)
+import(ggplot2, plyr)
 export(boxclust)

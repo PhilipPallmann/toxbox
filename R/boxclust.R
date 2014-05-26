@@ -1,10 +1,7 @@
 boxclust <- function(data, outcome, treatment, cluster, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
-                     labelsize=12, titlesize=15, white=F){
-  
-  require(plyr, quietly=T)
-  require(ggplot2, quietly=T)
+                     labelsize=12, titlesize=15, white=FALSE){
   
   option <- match.arg(option, choices=c("dotplot", "color", "none"))
   legpos <- match.arg(legpos, choices=c("top", "bottom", "left", "right", "none"))
