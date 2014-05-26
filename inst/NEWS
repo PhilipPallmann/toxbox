@@ -1,0 +1,11 @@
+###########################
+### toxbox package news ###
+###########################
+
+Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.uni-hannover.de>
+
+#########################
+
+Version 1.0 (26 May 2014)
+
+- Generic function boxclust() added.
