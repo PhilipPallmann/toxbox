@@ -13,7 +13,7 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatmen
   \item{data}{A data frame.}
   \item{outcome}{A column in the data frame containing the outcome variable.}
   \item{treatment}{A column in the data frame containing the grouping factor.}
-  \item{cluster}{A column in the data frame containing the cluster variable.}
+  \item{cluster}{A column in the data frame containing the cluster variable. If set to NULL, a jittered boxplot is drawn without discrimination of clusters.}
   \item{covariate}{A column in the data frame containing an (optional) categorical covariate (e.g., sex) to be distinguished by point shapes. Default is NULL. Ignored if option="none".}
   \item{xlabel}{Label of the horizontal axis.}
   \item{ylabel}{Label of the vertical axis.}
@@ -43,15 +43,19 @@ library(WWGbook)
 data(ratpup)
 ratpup$treatment <- factor(ratpup$treatment, levels=c("Control", "Low", "High"))
 
-##### Option 1: No jittering at all #####
+##### Option 1a: No jittering at all #####
 
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
          xlabel="", ylabel="Pup weight [g]", option="none")
 
+##### Option 1b: Cluster-unspecific jittering #####
+
+boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster=NULL,
+         xlabel="", ylabel="Pup weight [g]", option="color", hjitter=0.3, legpos="none")
+
 ##### Option 2: Distinguish clusters by colors #####
 
 ### Reduce the number of clusters (for illustration)
-#ratpup2 <- subset(ratpup, litter %in% c(1, 4, 13, 17, 22, 24))
 ratpup2 <- subset(ratpup, litter==1 | litter==4 | litter==13 | litter==17 | litter==22 | litter==24)
 
 # Add some horizontal noise

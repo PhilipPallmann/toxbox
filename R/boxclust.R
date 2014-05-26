@@ -1,7 +1,16 @@
-boxclust <- function(data, outcome, treatment, cluster, covariate=NULL,
+boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
                      labelsize=12, titlesize=15, white=FALSE){
+  
+  if(is.null(cluster)){
+    cluster <- as.factor(data[, treatment])
+    if(option=="dotplot"){
+      option <- "color"
+    }
+  }else{
+    cluster <- as.factor(data[, cluster])
+  }
   
   option <- match.arg(option, choices=c("dotplot", "color", "none"))
   legpos <- match.arg(legpos, choices=c("top", "bottom", "left", "right", "none"))
@@ -9,10 +18,10 @@ boxclust <- function(data, outcome, treatment, cluster, covariate=NULL,
   
   if(is.null(covariate)){
     dat <- data.frame(outcome=data[, outcome], treatment=as.factor(data[, treatment]),
-                      cluster=as.factor(data[, cluster]))
+                      cluster=cluster)
   }else{
     dat <- data.frame(outcome=data[, outcome], treatment=as.factor(data[, treatment]),
-                      cluster=as.factor(data[, cluster]), covariate=as.factor(data[, covariate]))
+                      cluster=cluster, covariate=as.factor(data[, covariate]))
   }
   
   dat <- ddply(dat, .(treatment), transform, howmany=as.numeric(cluster) - min(as.numeric(cluster)) + 1,
