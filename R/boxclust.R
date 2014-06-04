@@ -12,7 +12,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     cluster <- as.factor(data[, cluster])
   }
   
-  option <- match.arg(option, choices=c("dotplot", "color", "none"))
+  option <- match.arg(option, choices=c("dotplot", "color", "uni", "none"))
   legpos <- match.arg(legpos, choices=c("top", "bottom", "left", "right", "none"))
   vlines <- match.arg(vlines, choices=c("none", "fg", "bg"))
   
@@ -144,6 +144,37 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
+        xlab(xlabel) +
+        ylab(ylabel) +
+        ylim(min(dat$outcome), max(dat$outcome))        
+      if(white==F){
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+        }else{
+          print(theplot + thetheme)
+        }
+      }else{
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+        }else{
+          print(theplot + theme_bw() + thetheme)
+        }
+      }
+      
+    }
+    
+    if(option=="uni"){
+      
+      theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        geom_boxplot(outlier.size=0) +
+        geom_point(aes(x=as.numeric(treatment), group=treatment), colour="black",
+                   size=psize, alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
+        geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
+                      width=0.2, position=position_identity(width=0.5), colour="gray50") +
+        geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
+        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        labs(shape=covariate) +
+        guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(dat$outcome), max(dat$outcome))        
@@ -300,6 +331,37 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
+        xlab(xlabel) +
+        ylab(ylabel) +
+        ylim(min(dat$outcome), max(dat$outcome))
+      if(white==F){
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+        }else{
+          print(theplot + thetheme)
+        }
+      }else{
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+        }else{
+          print(theplot + theme_bw() + thetheme)
+        }
+      }
+      
+    }
+    
+    if(option=="uni"){
+      
+      theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        geom_boxplot(outlier.size=0) +
+        geom_point(aes(x=as.numeric(treatment), group=treatment, shape=covariate), colour="black",
+                   size=psize, alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
+        geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
+                      width=0.2, position=position_identity(width=0.5), colour="gray50") +
+        geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
+        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        labs(shape=covariate) +
+        guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(dat$outcome), max(dat$outcome))

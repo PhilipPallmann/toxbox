@@ -17,7 +17,7 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatmen
   \item{covariate}{A column in the data frame containing an (optional) categorical covariate (e.g., sex) to be distinguished by point shapes. Default is NULL. Ignored if option="none".}
   \item{xlabel}{Label of the horizontal axis.}
   \item{ylabel}{Label of the vertical axis.}
-  \item{option}{How to distinguish clusters. Choose among "dotplot" (default), "color", or "none".}
+  \item{option}{How to distinguish clusters and color points. Choose among "dotplot" (default, draws Cleveland dot plots), "color" (points have cluster-specific colors), "uni" (all points are black), or "none" (no points are printed).}
   \item{legpos}{Position of the legend for the categorical covariate (if present) and the colors (if option="color"). Choose among "top" (default), "bottom", "left", "right", or "none".}
   \item{psize}{Size of the jittered points. Default is 2.5. Ignored if option="none".}
   \item{hjitter}{Amount of jittering in horizontal direction. Default is 0. Ignored if option="none".}
