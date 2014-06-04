@@ -7,7 +7,7 @@ Enhanced Boxplots for Clustered Data
 A function for drawing jittered boxplots with error bars using the ggplot2 framework. This is especially illustrative for toxicological data with substructures such as technical replicates, clustering, or subsampling.
 }
 \usage{
-boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatment", ylabel = "Outcome", option = "dotplot", legpos = "top", psize = 2.5, hjitter = 0, vlines = "none", labelsize = 12, titlesize = 15, white = FALSE)
+boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatment", ylabel = "Outcome", option = "dotplot", legpos = "top", psize = 2.5, hjitter = 0, vlines = "none", printN=TRUE, labelsize = 12, titlesize = 15, white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
@@ -22,6 +22,7 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatmen
   \item{psize}{Size of the jittered points. Default is 2.5. Ignored if option="none".}
   \item{hjitter}{Amount of jittering in horizontal direction. Default is 0. Ignored if option="none".}
   \item{vlines}{Should vertical auxiliary lines be drawn for the dot plots? If so, should they be in the foreground or background (relative to the boxes)? Choose among "none" (default), "fg", or "bg". Ignored unless option="dotplot".}
+  \item{printN}{Should the cluster sizes be printed below the boxes? Default is TRUE.}
   \item{labelsize}{Size of the axis labels. Default is 12.}
   \item{titlesize}{Size of the axis titles. Default is 15.}
   \item{white}{Should the background area be white rather than gray? Default is FALSE.}

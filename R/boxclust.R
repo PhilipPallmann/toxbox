@@ -1,7 +1,7 @@
 boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
-                     labelsize=12, titlesize=15, white=FALSE){
+                     printN=TRUE, labelsize=12, titlesize=15, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])
@@ -47,16 +47,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-          geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
           ylim(min(dat$outcome), max(dat$outcome))        
         if(white==F){
-          print(theplot + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          }else{
+            print(theplot + thetheme)
+          }
         }else{
-          print(theplot + theme_bw() + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          }else{
+            print(theplot + theme_bw() + thetheme)
+          }
         }
       }
       
@@ -72,16 +79,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-          geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
           ylim(min(dat$outcome), max(dat$outcome))        
         if(white==F){
-          print(theplot + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          }else{
+            print(theplot + thetheme)
+          }
         }else{
-          print(theplot + theme_bw() + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          }else{
+            print(theplot + theme_bw() + thetheme)
+          }
         }
       }
       
@@ -96,16 +110,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-          geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
           ylim(min(dat$outcome), max(dat$outcome))        
         if(white==F){
-          print(theplot + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          }else{
+            print(theplot + thetheme)
+          }
         }else{
-          print(theplot + theme_bw() + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          }else{
+            print(theplot + theme_bw() + thetheme)
+          }
         }
       }
       
@@ -121,16 +142,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-        geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(dat$outcome), max(dat$outcome))        
       if(white==F){
-        print(theplot + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+        }else{
+          print(theplot + thetheme)
+        }
       }else{
-        print(theplot + theme_bw() + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+        }else{
+          print(theplot + theme_bw() + thetheme)
+        }
       }
       
     }
@@ -143,14 +171,21 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-        geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(dat$outcome), max(dat$outcome))        
       if(white==F){
-        print(theplot + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+        }else{
+          print(theplot + thetheme)
+        }
       }else{
-        print(theplot + theme_bw() + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+        }else{
+          print(theplot + theme_bw() + thetheme)
+        }
       }
       
     }
@@ -168,16 +203,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-          geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
           ylim(min(dat$outcome), max(dat$outcome))
         if(white==F){
-          print(theplot + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          }else{
+            print(theplot + thetheme)
+          }
         }else{
-          print(theplot + theme_bw() + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          }else{
+            print(theplot + theme_bw() + thetheme)
+          }
         }
       }
       
@@ -193,16 +235,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-          geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
           ylim(min(dat$outcome), max(dat$outcome))
         if(white==F){
-          print(theplot + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          }else{
+            print(theplot + thetheme)
+          }
         }else{
-          print(theplot + theme_bw() + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          }else{
+            print(theplot + theme_bw() + thetheme)
+          }
         }
       }
       
@@ -217,16 +266,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-          geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
           ylim(min(dat$outcome), max(dat$outcome))
         if(white==F){
-          print(theplot + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          }else{
+            print(theplot + thetheme)
+          }
         }else{
-          print(theplot + theme_bw() + thetheme)
+          if(printN==T){
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          }else{
+            print(theplot + theme_bw() + thetheme)
+          }
         }
       }
       
@@ -242,16 +298,23 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-        geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(dat$outcome), max(dat$outcome))
       if(white==F){
-        print(theplot + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+        }else{
+          print(theplot + thetheme)
+        }
       }else{
-        print(theplot + theme_bw() + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+        }else{
+          print(theplot + theme_bw() + thetheme)
+        }
       }
       
     }
@@ -264,14 +327,21 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
-        geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(dat$outcome), max(dat$outcome))
       if(white==F){
-        print(theplot + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+        }else{
+          print(theplot + thetheme)
+        }
       }else{
-        print(theplot + theme_bw() + thetheme)
+        if(printN==T){
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+        }else{
+          print(theplot + theme_bw() + thetheme)
+        }
       }
       
     }
