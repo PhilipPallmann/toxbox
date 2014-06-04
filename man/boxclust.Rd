@@ -7,7 +7,10 @@ Enhanced Boxplots for Clustered Data
 A function for drawing jittered boxplots with error bars using the ggplot2 framework. This is especially illustrative for toxicological data with substructures such as technical replicates, clustering, or subsampling.
 }
 \usage{
-boxclust(data, outcome, treatment, cluster, covariate = NULL, xlabel = "Treatment", ylabel = "Outcome", option = "dotplot", legpos = "top", psize = 2.5, hjitter = 0, vlines = "none", printN=TRUE, labelsize = 12, titlesize = 15, white = FALSE)
+boxclust(data, outcome, treatment, cluster, covariate = NULL,
+         xlabel = "Treatment", ylabel = "Outcome", option = "dotplot",
+         legpos = "top", psize = 2.5, hjitter = 0, vlines = "none",
+         printN=TRUE, labelsize = 12, titlesize = 15, white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
