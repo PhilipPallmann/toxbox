@@ -6,6 +6,12 @@ Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.
 
 #########################
 
+Version 1.0-1 (8 January 2015)
+
+- Made sure that SD bars are within the plotting area.
+
+#########################
+
 Version 1.0 (26 May 2014)
 
 - Generic function boxclust() added.
