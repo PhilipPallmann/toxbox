@@ -51,7 +51,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+          ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -83,7 +83,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+          ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -114,7 +114,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+          ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -146,7 +146,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+        ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -177,7 +177,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+        ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -204,7 +204,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+        ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -238,7 +238,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+          ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -270,7 +270,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+          ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -301,7 +301,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+          ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -333,7 +333,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+        ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -364,7 +364,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+        ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
@@ -391,7 +391,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), mean - sd), max(max(dat$outcome), mean + sd))        
+        ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
