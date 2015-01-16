@@ -6,6 +6,13 @@ Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.
 
 #########################
 
+Version 1.1 (16 January 2015)
+
+- Added functionality for plotting p-values or significance stars obtained from many-to-one comparisons of means with a control.
+- Removed the ugly gray borders or shading around legend symbols.
+
+#########################
+
 Version 1.0-1 (8 January 2015)
 
 - Made sure that SD bars are within the plotting area.

@@ -10,7 +10,8 @@ A function for drawing jittered boxplots with error bars using the ggplot2 frame
 boxclust(data, outcome, treatment, cluster, covariate = NULL,
          xlabel = "Treatment", ylabel = "Outcome", option = "dotplot",
          legpos = "top", psize = 2.5, hjitter = 0, vlines = "none",
-         printN=TRUE, labelsize = 12, titlesize = 15, white = FALSE)
+         pvals = NULL, stars = FALSE, printN=TRUE, labelsize = 12,
+         titlesize = 15, white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
@@ -25,6 +26,8 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
   \item{psize}{Size of the jittered points. Default is 2.5. Ignored if option="none".}
   \item{hjitter}{Amount of jittering in horizontal direction. Default is 0. Ignored if option="none".}
   \item{vlines}{Should vertical auxiliary lines be drawn for the dot plots? If so, should they be in the foreground or background (relative to the boxes)? Choose among "none" (default), "fg", or "bg". Ignored unless option="dotplot".}
+  \item{pvals}{An optional vector of p-values to be printed alongside the non-control treatments. They should reasonably result from some Dunnett-type test procedure (many-to-one comparisons of group means versus a common control) e.g., based on a linear mixed-effects model. The p-values must be in the same order the treatments appear in the plot i.e., the leftmost group has to be the control. They are automatically rounded to 3 digits at most, and p-values smaller than 0.001 are replaced by "p<0.001". Default is NULL.}
+  \item{stars}{Should significance stars ("***" for p < 0.001, "**" for p < 0.01, "*" for p < 0.05, and "n.s." otherwise) be plotted instead of p-values for the many-to-one comparisons? Default is FALSE. Ignored if pvals=NULL.}
   \item{printN}{Should the cluster sizes be printed below the boxes? Default is TRUE.}
   \item{labelsize}{Size of the axis labels. Default is 12.}
   \item{titlesize}{Size of the axis titles. Default is 15.}
@@ -86,5 +89,15 @@ boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
 # sexes distinguished by point shapes, slightly smaller points, and white background
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
          xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg", white=TRUE)
+
+# Additionally with (fake) p-values
+boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
+         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg",
+         pvals=c(0.03, 0.0004), white=TRUE)
+
+# Additionally with significance stars derived from (fake) p-values
+boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
+         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg",
+         pvals=c(0.03, 0.0004), stars=TRUE, white=TRUE)
 }
 \keyword{~hplot}

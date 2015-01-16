@@ -1,7 +1,8 @@
 boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
-                     printN=TRUE, labelsize=12, titlesize=15, white=FALSE){
+                     pvals=NULL, stars=FALSE, printN=TRUE, labelsize=12,
+                     titlesize=15, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])
@@ -30,9 +31,24 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
   dats <- ddply(dat, .(treatment), summarize, mean=mean(outcome), sd=sd(outcome),
                 n=paste("n=", length(outcome), sep=""), N=paste("N=", length(unique(cluster)), sep=""))
   
-  thetheme <- theme(axis.text.x=element_text(size=labelsize), axis.text.y=element_text(size=labelsize),
-                    axis.title.x=element_text(size=titlesize), axis.title.y=element_text(size=titlesize),
-                    legend.position=legpos)
+  if(is.null(pvals)==TRUE){
+    ptext <- geom_blank()
+  }else{
+    if(stars==FALSE){
+      pvals2 <- c("", ifelse(pvals < 0.001, "p<0.001", paste("p=", round(pvals, 3), sep="")))
+      ptext <- annotate("text", label=pvals2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, vjust=-1)
+    }else{
+      pstars <- c("", ifelse(pvals < 0.001, "***", ifelse(pvals < 0.01, "**", ifelse(pvals < 0.05, "*", "n.s."))))
+      ptext <- annotate("text", label=pstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, vjust=-1)
+    }
+  }
+  
+  thetheme <- theme(axis.text.x = element_text(size=labelsize),
+                    axis.text.y = element_text(size=labelsize),
+                    axis.title.x = element_text(size=titlesize),
+                    axis.title.y = element_text(size=titlesize),
+                    legend.position = legpos,
+                    legend.key = element_blank())
   
   if(is.null(covariate)){
     
@@ -47,6 +63,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          ptext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -79,6 +96,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          ptext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -110,6 +128,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          ptext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -142,6 +161,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        ptext +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -173,6 +193,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        ptext +
         labs(shape=covariate) +
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -202,6 +223,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        ptext +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
@@ -234,6 +256,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          ptext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -266,6 +289,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          ptext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -297,6 +321,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                         width=0.2, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
           geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          ptext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -329,6 +354,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        ptext +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -360,6 +386,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        ptext +
         labs(shape=covariate) +
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -389,6 +416,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                       width=0.2, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
         geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        ptext +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
