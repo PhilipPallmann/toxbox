@@ -6,6 +6,12 @@ Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.
 
 #########################
 
+Version 1.1-1 (21 January 2015)
+
+- Added argument pvalsize to adjust the size of p-values or significance stars.
+
+#########################
+
 Version 1.1 (16 January 2015)
 
 - Added functionality for plotting p-values or significance stars obtained from many-to-one comparisons of means with a control.

@@ -1,8 +1,8 @@
 boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
-                     pvals=NULL, stars=FALSE, printN=TRUE, labelsize=12,
-                     titlesize=15, white=FALSE){
+                     pvals=NULL, stars=FALSE, pvalsize=3, printN=TRUE,
+                     labelsize=12, titlesize=15, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])
@@ -36,10 +36,10 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
   }else{
     if(stars==FALSE){
       pvals2 <- c("", ifelse(pvals < 0.001, "p<0.001", paste("p=", round(pvals, 3), sep="")))
-      ptext <- annotate("text", label=pvals2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, vjust=-1)
+      ptext <- annotate("text", label=pvals2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
     }else{
       pstars <- c("", ifelse(pvals < 0.001, "***", ifelse(pvals < 0.01, "**", ifelse(pvals < 0.05, "*", "n.s."))))
-      ptext <- annotate("text", label=pstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, vjust=-1)
+      ptext <- annotate("text", label=pstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
     }
   }
   
