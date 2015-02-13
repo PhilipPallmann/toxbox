@@ -11,7 +11,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     }
   }else{
     cluster <- as.factor(data[, cluster])
-  }
+  } 
   
   option <- match.arg(option, choices=c("dotplot", "color", "uni", "none"))
   legpos <- match.arg(legpos, choices=c("top", "bottom", "left", "right", "none"))
