@@ -1,0 +1,23 @@
+---
+title: "Boxplots for Clustered Toxicological Data with toxbox"
+author: "Philip Pallmann"
+date: "Tuesday, February 17, 2015"
+output: html_document
+---
+
+```{r}
+library("toxbox")
+library("WWGbook")
+data(ratpup)
+ratpup$treatment <- factor(ratpup$treatment, levels=c("Control", "Low", "High"))
+```
+
+
+```{r}
+boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
+         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg",
+        pneg=c(0.033, 0.44), stars=TRUE, white=TRUE)
+```
+
+
+

@@ -1,12 +1,14 @@
 Package: toxbox
 Type: Package
 Title: Boxplots for Toxicological Data
-Version: 1.1-1
-Date: 2015-01-21
-Author: Philip Pallmann
-Maintainer: Philip Pallmann <pallmann@biostat.uni-hannover.de>
+Version: 1.1.2
+Date: 2015-02-16
+Authors@R: person("Philip", "Pallmann", email="pallmann@biostat.uni-hannover.de", role=c("aut", "cre"))
 Depends: R (>= 3.0.0)
 Imports: ggplot2, plyr
 Suggests: WWGbook
+VignetteBuilder: knitr
 Description: Enhanced boxplot display for (toxicological) data with substructures.
+URL: https://github.com/PhilipPallmann/toxbox
+BugReports: https://github.com/PhilipPallmann/toxbox/issues
 License: GPL (>= 2)

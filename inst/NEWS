@@ -6,7 +6,15 @@ Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.
 
 #########################
 
-Version 1.1-1 (21 January 2015)
+Version 1.1.2 (16 February 2015)
+
+- Added functionality for plotting p-values or significance stars for comparisons with both a negative and a positive control.
+- Minor aesthetic adjustment: gray boxes with white background. 
+- Added a raw HTML vignette.
+
+#########################
+
+Version 1.1.1 (21 January 2015)
 
 - Added argument pvalsize to adjust the size of p-values or significance stars.
 
@@ -19,7 +27,7 @@ Version 1.1 (16 January 2015)
 
 #########################
 
-Version 1.0-1 (8 January 2015)
+Version 1.0.1 (8 January 2015)
 
 - Made sure that SD bars are within the plotting area.
 
