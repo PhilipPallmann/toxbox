@@ -6,7 +6,7 @@ Date: 2015-02-16
 Authors@R: person("Philip", "Pallmann", email="pallmann@biostat.uni-hannover.de", role=c("aut", "cre"))
 Depends: R (>= 3.0.0)
 Imports: ggplot2, plyr
-Suggests: WWGbook
+Suggests: WWGbook, knitr
 VignetteBuilder: knitr
 Description: Enhanced boxplot display for (toxicological) data with substructures.
 URL: https://github.com/PhilipPallmann/toxbox
