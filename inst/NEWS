@@ -9,8 +9,9 @@ Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.
 Version 1.1.2 (16 February 2015)
 
 - Added functionality for plotting p-values or significance stars for comparisons with both a negative and a positive control.
-- Minor aesthetic adjustment: gray boxes with white background. 
-- Added a raw HTML vignette.
+- Added argument nsize to adjust the size of sample size annotations.
+- Minor aesthetic adjustment: light gray boxes with white background.
+- Added a raw HTML vignette (to be extended soon).
 
 #########################
 

@@ -2,7 +2,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
                      pneg=NULL, ppos=NULL, stars=FALSE, pvalsize=3, printN=TRUE,
-                     labelsize=12, titlesize=15, white=FALSE){
+                     nsize=5, labelsize=12, titlesize=15, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])
@@ -51,12 +51,12 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           pneg2 <- c("", ifelse(pneg < 0.001, "p<0.001", paste("p=", round(pneg, 3), sep="")), "")
           pnegtext <- annotate("text", label=pneg2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
           ppos2 <- c("", ifelse(ppos < 0.001, "p<0.001", paste("p=", round(ppos, 3), sep="")), "")
-          ppostext <- annotate("text", label=ppos2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=1.5)
+          ppostext <- annotate("text", label=ppos2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=2)
         }else{
           pnegstars <- c("", ifelse(pneg < 0.001, "***", ifelse(pneg < 0.01, "**", ifelse(pneg < 0.05, "*", "n.s."))), "")
           pnegtext <- annotate("text", label=pnegstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
           pposstars <- c("", ifelse(ppos < 0.001, "***", ifelse(ppos < 0.01, "**", ifelse(ppos < 0.05, "*", "n.s."))), "")
-          ppostext <- annotate("text", label=pposstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=1.5)
+          ppostext <- annotate("text", label=pposstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=2)
         }
       }
     }
@@ -87,7 +87,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           labs(shape=covariate) +
@@ -97,13 +97,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
           }else{
             print(theplot + thetheme)
           }
         }else{
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
           }else{
             print(theplot + theme_bw() + thetheme)
           }
@@ -121,7 +121,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           labs(shape=covariate) +
@@ -131,13 +131,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
           }else{
             print(theplot + thetheme)
           }
         }else{
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
           }else{
             print(theplot + theme_bw() + thetheme)
           }
@@ -154,7 +154,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           labs(shape=covariate) +
@@ -164,13 +164,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
           }else{
             print(theplot + thetheme)
           }
         }else{
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
           }else{
             print(theplot + theme_bw() + thetheme)
           }
@@ -188,7 +188,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         labs(colour=cluster, shape=covariate) +
@@ -198,13 +198,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
         }else{
           print(theplot + thetheme)
         }
       }else{
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
         }else{
           print(theplot + theme_bw() + thetheme)
         }
@@ -221,7 +221,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         labs(shape=covariate) +
@@ -231,13 +231,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
         }else{
           print(theplot + thetheme)
         }
       }else{
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
         }else{
           print(theplot + theme_bw() + thetheme)
         }
@@ -252,7 +252,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         xlab(xlabel) +
@@ -260,13 +260,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
         }else{
           print(theplot + thetheme)
         }
       }else{
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
         }else{
           print(theplot + theme_bw() + thetheme)
         }
@@ -286,7 +286,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           labs(shape=covariate) +
@@ -296,13 +296,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
           }else{
             print(theplot + thetheme)
           }
         }else{
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
           }else{
             print(theplot + theme_bw() + thetheme)
           }
@@ -320,7 +320,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           labs(shape=covariate) +
@@ -330,13 +330,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
           }else{
             print(theplot + thetheme)
           }
         }else{
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
           }else{
             print(theplot + theme_bw() + thetheme)
           }
@@ -353,7 +353,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           labs(shape=covariate) +
@@ -363,13 +363,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
         if(white==F){
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
           }else{
             print(theplot + thetheme)
           }
         }else{
           if(printN==T){
-            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+            print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
           }else{
             print(theplot + theme_bw() + thetheme)
           }
@@ -387,7 +387,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         labs(colour=cluster, shape=covariate) +
@@ -397,13 +397,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
         }else{
           print(theplot + thetheme)
         }
       }else{
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
         }else{
           print(theplot + theme_bw() + thetheme)
         }
@@ -420,7 +420,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         labs(shape=covariate) +
@@ -430,13 +430,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
         }else{
           print(theplot + thetheme)
         }
       }else{
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
         }else{
           print(theplot + theme_bw() + thetheme)
         }
@@ -451,7 +451,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), vjust=2) +
+        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         xlab(xlabel) +
@@ -459,13 +459,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
       if(white==F){
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
         }else{
           print(theplot + thetheme)
         }
       }else{
         if(printN==T){
-          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), vjust=-2) + theme_bw() + thetheme)
+          print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + theme_bw() + thetheme)
         }else{
           print(theplot + theme_bw() + thetheme)
         }
