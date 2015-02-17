@@ -2,7 +2,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
                      pneg=NULL, ppos=NULL, stars=FALSE, pvalsize=3, printN=TRUE,
-                     nsize=5, labelsize=12, titlesize=15, white=FALSE){
+                     nsize=4, labelsize=11, titlesize=14, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])

@@ -11,7 +11,8 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
          xlabel = "Treatment", ylabel = "Outcome", option = "dotplot",
          legpos = "top", psize = 2.5, hjitter = 0, vlines = "none",
          pneg = NULL, ppos = NULL, stars = FALSE, pvalsize=3,
-         printN=TRUE, labelsize = 12, titlesize = 15, white = FALSE)
+         printN=TRUE, nsize=4, labelsize = 11, titlesize = 14,
+         white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
@@ -31,8 +32,9 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
   \item{stars}{Should significance stars ("***" for p < 0.001, "**" for p < 0.01, "*" for p < 0.05, and "n.s." otherwise) be plotted instead of p-values? Default is FALSE. Ignored if both pneg=NULL and ppos=NULL.}
   \item{pvalsize}{Size of the p-values or significance stars. Default is 3. Ignored if both pneg=NULL and ppos=NULL.}
   \item{printN}{Should the cluster sizes be printed below the boxes? Default is TRUE.}
-  \item{labelsize}{Size of the axis labels. Default is 12.}
-  \item{titlesize}{Size of the axis titles. Default is 15.}
+  \item{nsize}{Size of the sample size annotations (n and N). Default is 4.}
+  \item{labelsize}{Size of the axis labels. Default is 11.}
+  \item{titlesize}{Size of the axis titles. Default is 14.}
   \item{white}{Should the background area be white rather than gray? Default is FALSE.}
 }
 \details{
