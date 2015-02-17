@@ -9,9 +9,14 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r}
+```{r message=FALSE}
 library("knitr")
 library("toxbox")
+```
+
+Use the rat pup data from package `WWGbook` and reorder the `treatment` factor:
+
+```{r}
 library("WWGbook")
 data(ratpup)
 ratpup$treatment <- factor(ratpup$treatment, levels=c("Control", "Low", "High"))
@@ -21,13 +26,11 @@ xxx
 
 ```{r fig.width=7, fig.height=5}
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
-         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg",
-        pneg=c(0.033, 0.44), stars=TRUE, white=TRUE)
+         xlabel="", ylabel="Pup weight [g]\n", psize=1.5, hjitter=0.01, pneg=c(0.033, 0.44), white=TRUE)
 ```
 
 
 ```{r fig.width=7, fig.height=5}
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter", covariate="sex",
-         xlabel="", ylabel="Pup weight [g]", psize=2, hjitter=0.01, vlines="fg",
-        pneg=0.07, ppos=0.004, stars=FALSE, white=TRUE)
+         xlabel="", ylabel="Pup weight [g]\n", psize=1.5, hjitter=0.01, pneg=0.07, ppos=0.004, white=TRUE)
 ```
