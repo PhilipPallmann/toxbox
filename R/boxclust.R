@@ -51,12 +51,12 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           pneg2 <- c("", ifelse(pneg < 0.001, "p<0.001", paste("p=", round(pneg, 3), sep="")), "")
           pnegtext <- annotate("text", label=pneg2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
           ppos2 <- c("", ifelse(ppos < 0.001, "p<0.001", paste("p=", round(ppos, 3), sep="")), "")
-          ppostext <- annotate("text", label=ppos2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=1)
+          ppostext <- annotate("text", label=ppos2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=-1)
         }else{
           pnegstars <- c("", ifelse(pneg < 0.001, "***", ifelse(pneg < 0.01, "**", ifelse(pneg < 0.05, "*", "n.s."))), "")
           pnegtext <- annotate("text", label=pnegstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
           pposstars <- c("", ifelse(ppos < 0.001, "***", ifelse(ppos < 0.01, "**", ifelse(ppos < 0.05, "*", "n.s."))), "")
-          ppostext <- annotate("text", label=pposstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=1)
+          ppostext <- annotate("text", label=pposstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean - dats$sd, size=pvalsize, vjust=-1)
         }
       }
     }
