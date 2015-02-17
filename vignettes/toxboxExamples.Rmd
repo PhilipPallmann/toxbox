@@ -21,7 +21,7 @@ data(ratpup)
 ratpup$treatment <- factor(ratpup$treatment, levels=c("Control", "Low", "High"))
 ```
 
-We plot the data assuming the Dunnett $p$-values for comparisons to the negative control were 0.07 and 0.04.
+We plot the data assuming the Dunnett p-values for comparisons to the negative control were 0.07 and 0.04.
 
 ```{r fig.width=7, fig.height=5}
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
@@ -29,7 +29,7 @@ boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
          hjitter=0.01, pneg=c(0.07, 0.04), stars=TRUE, white=TRUE)
 ```
 
-We plot the data assuming high were the positive control, and the $p$-values for comparisons to the negative and positive control were 0.0008 and 0.12, respectively.
+We plot the data assuming high were the positive control, and the p-values for comparisons to the negative and positive control were 0.0008 and 0.12, respectively.
 
 ```{r fig.width=7, fig.height=5}
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
