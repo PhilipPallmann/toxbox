@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r}
+library("knitr")
 library("toxbox")
 library("WWGbook")
 data(ratpup)

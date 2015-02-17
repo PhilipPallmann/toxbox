@@ -4,8 +4,8 @@ Title: Boxplots for Toxicological Data
 Version: 1.1.2
 Date: 2015-02-16
 Authors@R: person("Philip", "Pallmann", email="pallmann@biostat.uni-hannover.de", role=c("aut", "cre"))
-Depends: R (>= 3.0.0)
-Imports: ggplot2, plyr
+Depends: ggplot2
+Imports: plyr
 Suggests: WWGbook, knitr
 VignetteBuilder: knitr
 Description: Enhanced boxplot display for (toxicological) data with substructures.
