@@ -29,10 +29,10 @@ boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
          hjitter=0.01, pneg=c(0.07, 0.04), stars=TRUE, white=TRUE)
 ```
 
-We plot the data assuming high were the positive control, and the p-values for comparisons to the negative and positive control were 0.0008 and 0.12, respectively.
+We plot the data assuming high were the positive control, and the p-values for comparisons to the negative and positive control were 0.0008 and 0.12, respectively, and the comparison between both controls yielded a p-values of 0.0004.
 
 ```{r fig.width=7, fig.height=5}
 boxclust(data=ratpup, outcome="weight", treatment="treatment", cluster="litter",
          covariate="sex", xlabel="", ylabel="Pup weight [g]\n", psize=1.5,
-         hjitter=0.01, pneg=0.0008, ppos=0.12, white=TRUE)
+         hjitter=0.01, pneg=0.009, ppos=0.12, white=TRUE)
 ```

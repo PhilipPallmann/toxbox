@@ -1,8 +1,9 @@
 boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
-                     pneg=NULL, ppos=NULL, stars=FALSE, pvalsize=3, printN=TRUE,
-                     nsize=4, labelsize=11, titlesize=14, white=FALSE){
+                     pneg=NULL, ppos=NULL, pposneg=NULL, stars=FALSE,
+                     pvalsize=3, printN=TRUE, nsize=4, labelsize=11,
+                     titlesize=14, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])
@@ -62,6 +63,18 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     }
   }
   
+  if(is.null(pposneg)==TRUE){
+    pposnegtext <- geom_blank()
+  }else{
+    if(stars==FALSE){
+      pposneg2 <- c(rep("", nlevels(as.factor(data[, treatment])) - 1), ifelse(pposneg < 0.001, "p<0.001", paste("p=", round(pposneg, 3), sep="")))
+      pposnegtext <- annotate("text", label=pposneg2, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
+    }else{
+      pposnegstars <- c(rep("", nlevels(as.factor(data[, treatment])) - 1), ifelse(pposneg < 0.001, "***", ifelse(pposneg < 0.01, "**", ifelse(pposneg < 0.05, "*", "n.s."))))
+      pposnegtext <- annotate("text", label=pposnegstars, x=1:nlevels(as.factor(data[, treatment])) + 0.45, y=dats$mean + dats$sd, size=pvalsize, vjust=-1)
+    } 
+  }
+  
   if(white==FALSE){
     thefill <- "white"      
   }else{
@@ -90,6 +103,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
+          pposnegtext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -124,6 +138,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
+          pposnegtext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -157,6 +172,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
+          pposnegtext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -191,6 +207,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
+        pposnegtext +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -224,6 +241,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
+        pposnegtext +
         labs(shape=covariate) +
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -255,6 +273,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
+        pposnegtext +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        
@@ -289,6 +308,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
+          pposnegtext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -323,6 +343,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
+          pposnegtext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -356,6 +377,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
+          pposnegtext +
           labs(shape=covariate) +
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
@@ -390,6 +412,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
+        pposnegtext +
         labs(colour=cluster, shape=covariate) +
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -423,6 +446,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
+        pposnegtext +
         labs(shape=covariate) +
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
@@ -454,6 +478,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
+        pposnegtext +
         xlab(xlabel) +
         ylab(ylabel) +
         ylim(min(min(dat$outcome), dats$mean - dats$sd), max(max(dat$outcome), dats$mean + dats$sd))        

@@ -6,6 +6,12 @@ Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.
 
 #########################
 
+Version 1.1.3 (20 February 2015)
+
+- Added functionality for plotting a p-value or significance star(s) for the comparison between negative and positive control.
+
+#########################
+
 Version 1.1.2 (16 February 2015)
 
 - Added functionality for plotting p-values or significance stars for comparisons with both a negative and a positive control.

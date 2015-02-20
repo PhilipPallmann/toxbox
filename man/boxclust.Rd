@@ -10,9 +10,9 @@ A function for drawing jittered boxplots with error bars using the ggplot2 frame
 boxclust(data, outcome, treatment, cluster, covariate = NULL,
          xlabel = "Treatment", ylabel = "Outcome", option = "dotplot",
          legpos = "top", psize = 2.5, hjitter = 0, vlines = "none",
-         pneg = NULL, ppos = NULL, stars = FALSE, pvalsize=3,
-         printN=TRUE, nsize=4, labelsize = 11, titlesize = 14,
-         white = FALSE)
+         pneg = NULL, ppos = NULL, pposneg = NULL, stars = FALSE,
+         pvalsize=3, printN=TRUE, nsize=4, labelsize = 11,
+         titlesize = 14, white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
@@ -29,6 +29,7 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
   \item{vlines}{Should vertical auxiliary lines be drawn for the dot plots? If so, should they be in the foreground or background (relative to the boxes)? Choose among "none" (default), "fg", or "bg". Ignored unless option="dotplot".}
   \item{pneg}{An optional vector of p-values from comparisons to a \bold{negative control} to be printed alongside the non-control treatments. Default is NULL. Please see details.}
   \item{ppos}{An optional vector of p-values from comparisons to a \bold{positive control} to be printed alongside the non-control treatments. Default is NULL. Please see details.}
+  \item{pposneg}{An optional numeric p-value from a comparison between \bold{positive} and \bold{positive control} to be printed alongside the positive control treatments. Default is NULL. Please see details.}
   \item{stars}{Should significance stars ("***" for p < 0.001, "**" for p < 0.01, "*" for p < 0.05, and "n.s." otherwise) be plotted instead of p-values? Default is FALSE. Ignored if both pneg=NULL and ppos=NULL.}
   \item{pvalsize}{Size of the p-values or significance stars. Default is 3. Ignored if both pneg=NULL and ppos=NULL.}
   \item{printN}{Should the cluster sizes be printed below the boxes? Default is TRUE.}
@@ -40,7 +41,7 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
 \details{
 Standard box-and-whisker plots are supplemented with error bars presenting sample means and standard deviations alongside the boxes. Sample sizes and numbers of clusters are printed for each sample. Single observations are sprinkled across the plot with some random noise added in horizontal direction ("jittering"). Cluster affiliations of the single observations can be designated via colors (which is difficult to tell apart with > 10 clusters) or by overlaying Cleveland dot plots.
 
-If p-values are to be printed, they should reasonably result from some Dunnett-type test procedure (many-to-one comparisons of group means versus a common control) e.g., based on a linear mixed-effects model. The p-values must be in the same order the treatments appear in the plot. There are two basic requirements: a) if there is a negative control, it must be the leftmost group, and b) if there is a positive control, it must be the rightmost group. Whenever there is a positive control, there must also be a negative control. The p-values are automatically rounded to 3 digits at most, and p-values smaller than 0.001 are replaced by "p<0.001".
+If p-values are to be printed, they should reasonably result from some Dunnett-type test procedure (many-to-one comparisons of group means versus a common control) e.g., based on a linear mixed-effects model. The p-values must be in the same order the treatments appear in the plot. There are two basic requirements: a) if there is a negative control, it must be the leftmost group, and b) if there is a positive control, it must be the rightmost group. Whenever there is a positive control, there must also be a negative control. The comparison between positive and negative control is usually performed with a two-sample test. The p-values are automatically rounded to 3 digits at most, and p-values smaller than 0.001 are replaced by "p<0.001".
 }
 \value{
 A graphical display.
