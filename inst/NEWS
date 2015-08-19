@@ -2,7 +2,14 @@
 ### toxbox package news ###
 ###########################
 
-Please report weird or unexpected behavior to Philip Pallmann <pallmann@biostat.uni-hannover.de>
+Please report weird or unexpected behavior to Philip Pallmann <p.pallmann@lancaster.ac.uk>
+
+#########################
+
+Version 1.1.4 (19 August 2015)
+
+- Ensured that the sample sizes n and N do not overlap the jittered boxplot.
+- Changed the maintainer's e-mail address.
 
 #########################
 

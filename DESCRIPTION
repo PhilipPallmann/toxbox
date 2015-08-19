@@ -1,9 +1,9 @@
 Package: toxbox
 Type: Package
 Title: Boxplots for Toxicological Data
-Version: 1.1.3
-Date: 2015-02-20
-Authors@R: person("Philip", "Pallmann", email="pallmann@biostat.uni-hannover.de", role=c("aut", "cre"))
+Version: 1.1.4
+Date: 2015-08-19
+Authors@R: person("Philip", "Pallmann", email="p.pallmann@lancaster.ac.uk", role=c("aut", "cre"))
 Depends: ggplot2
 Imports: plyr
 Suggests: WWGbook, knitr

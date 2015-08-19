@@ -100,7 +100,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+          geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           pposnegtext +
@@ -135,7 +135,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+          geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           pposnegtext +
@@ -169,7 +169,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+          geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           pposnegtext +
@@ -204,7 +204,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+        geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         pposnegtext +
@@ -238,7 +238,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+        geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         pposnegtext +
@@ -270,7 +270,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+        geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         pposnegtext +
@@ -305,7 +305,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+          geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           pposnegtext +
@@ -340,7 +340,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+          geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           pposnegtext +
@@ -374,7 +374,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                         width=0.15, position=position_identity(width=0.5), colour="gray50") +
           geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-          geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+          geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
           pnegtext +
           ppostext +
           pposnegtext +
@@ -409,7 +409,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+        geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         pposnegtext +
@@ -443,7 +443,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+        geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         pposnegtext +
@@ -475,7 +475,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
         geom_point(data=dats, aes(x=as.numeric(treatment) + 0.45, y=mean), shape=3, colour="gray50") +
-        geom_text(data=dats, aes(y=Inf, label=n), size=nsize, vjust=2) +
+        geom_text(data=dats, aes(y=max(dat$outcome), label=n), size=nsize, vjust=2) +
         pnegtext +
         ppostext +
         pposnegtext +
