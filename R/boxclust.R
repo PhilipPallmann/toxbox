@@ -2,8 +2,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
                      xlabel="Treatment", ylabel="Outcome", option="dotplot",
                      legpos="top", psize=2.5, hjitter=0, vlines="none",
                      pneg=NULL, ppos=NULL, pposneg=NULL, stars=FALSE,
-                     pvalsize=3, printN=TRUE, nsize=4, labelsize=11,
-                     titlesize=14, white=FALSE){
+                     pvalsize=3, hlimits=NULL, printN=TRUE, nsize=4,
+                     labelsize=11, titlesize=14, white=FALSE){
   
   if(is.null(cluster)){
     cluster <- as.factor(data[, treatment])
@@ -75,6 +75,13 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     } 
   }
   
+  if(is.null(hlimits)==TRUE){
+    hlim1 <- hlim2 <- geom_blank()
+  }else{
+    hlim1 <- geom_hline(y=hlimits[1], linetype=2)
+    hlim2 <- geom_hline(y=hlimits[2], linetype=2)
+  }
+  
   if(white==FALSE){
     thefill <- "white"      
   }else{
@@ -94,6 +101,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
       
       if(vlines=="none"){
         theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+          hlim1 +
+          hlim2 +
           geom_boxplot(fill=thefill, outlier.size=0) +
           geom_point(aes(x=as.numeric(treatment) - 0.325 + 0.6 * howmany/clusters, group=treatment),
                      size=psize, colour="gray40", alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
@@ -127,6 +136,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
       
       if(vlines=="bg"){
         theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+          hlim1 +
+          hlim2 +
           geom_boxplot(fill=thefill, outlier.size=0) +
           geom_vline(aes(xintercept=as.numeric(treatment) - 0.33 + 0.6 * howmany/clusters, group=treatment),
                      linetype=2, colour="gray70", alpha=0.7) +
@@ -163,6 +174,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
       
       if(vlines=="fg"){
         theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+          hlim1 +
+          hlim2 +
           geom_boxplot(fill=thefill, outlier.size=0) +
           geom_vline(aes(xintercept=as.numeric(treatment) - 0.33 + 0.6 * howmany/clusters, group=treatment),
                      linetype=2, colour="gray70", alpha=0.7) +
@@ -201,6 +214,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     if(option=="color"){
       
       theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        hlim1 +
+        hlim2 +
         geom_boxplot(fill=thefill, outlier.size=0) +
         geom_point(aes(x=as.numeric(treatment), group=treatment, colour=cluster),
                    size=psize, alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
@@ -236,6 +251,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     if(option=="uni"){
       
       theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        hlim1 +
+        hlim2 +
         geom_boxplot(fill=thefill, outlier.size=0) +
         geom_point(aes(x=as.numeric(treatment), group=treatment), colour="black",
                    size=psize, alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
@@ -271,6 +288,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     if(option=="none"){
       
       theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        hlim1 +
+        hlim2 +
         geom_boxplot(fill=thefill, outlier.size=0) +
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +
@@ -305,6 +324,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
       
       if(vlines=="none"){
         theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+          hlim1 +
+          hlim2 +
           geom_boxplot(fill=thefill, outlier.size=0) +
           geom_point(aes(x=as.numeric(treatment) - 0.325 + 0.6 * howmany/clusters, group=treatment, shape=covariate),
                      size=psize, colour="gray40", alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
@@ -338,6 +359,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
       
       if(vlines=="bg"){
         theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+          hlim1 +
+          hlim2 +
           geom_boxplot(fill=thefill, outlier.size=0) +
           geom_vline(aes(xintercept=as.numeric(treatment) - 0.33 + 0.6 * howmany/clusters, group=treatment),
                      linetype=2, colour="gray70", alpha=0.7) +
@@ -374,6 +397,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
       
       if(vlines=="fg"){
         theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+          hlim1 +
+          hlim2 +
           geom_boxplot(fill=thefill, outlier.size=0) +
           geom_vline(aes(xintercept=as.numeric(treatment) - 0.33 + 0.6 * howmany/clusters, group=treatment),
                      linetype=2, colour="gray70", alpha=0.7) +
@@ -412,6 +437,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     if(option=="color"){
       
       theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        hlim1 +
+        hlim2 +
         geom_boxplot(fill=thefill, outlier.size=0) +
         geom_point(aes(x=as.numeric(treatment), group=treatment, colour=cluster, shape=covariate),
                    size=psize, alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
@@ -447,6 +474,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     if(option=="uni"){
       
       theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        hlim1 +
+        hlim2 +
         geom_boxplot(fill=thefill, outlier.size=0) +
         geom_point(aes(x=as.numeric(treatment), group=treatment, shape=covariate), colour="black",
                    size=psize, alpha=0.7, position=position_jitter(height=0, width=hjitter)) +
@@ -482,6 +511,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     if(option=="none"){
       
       theplot <- ggplot(dat, aes(x=treatment, y=outcome)) +
+        hlim1 +
+        hlim2 +
         geom_boxplot(fill=thefill, outlier.size=0) +
         geom_errorbar(data=dats, aes(x=as.numeric(treatment) + 0.45, y=NULL, ymin=mean - sd, ymax=mean + sd),
                       width=0.15, position=position_identity(width=0.5), colour="gray50") +

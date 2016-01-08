@@ -6,6 +6,12 @@ Please report weird or unexpected behavior to Philip Pallmann <p.pallmann@lancas
 
 #########################
 
+Version 1.1.5 (8 January 2016)
+
+- Added functionality for adding horizontal limits that represent e.g., the prediction interval for a future single value as computed from historical controls.
+
+#########################
+
 Version 1.1.4 (19 August 2015)
 
 - Ensured that the sample sizes n and N do not overlap the jittered boxplot.

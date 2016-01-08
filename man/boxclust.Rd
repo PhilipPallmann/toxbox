@@ -11,8 +11,8 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
          xlabel = "Treatment", ylabel = "Outcome", option = "dotplot",
          legpos = "top", psize = 2.5, hjitter = 0, vlines = "none",
          pneg = NULL, ppos = NULL, pposneg = NULL, stars = FALSE,
-         pvalsize=3, printN=TRUE, nsize=4, labelsize = 11,
-         titlesize = 14, white = FALSE)
+         pvalsize = 3, hlimits = NULL, printN = TRUE, nsize = 4,
+         labelsize = 11, titlesize = 14, white = FALSE)
 }
 \arguments{
   \item{data}{A data frame.}
@@ -32,6 +32,7 @@ boxclust(data, outcome, treatment, cluster, covariate = NULL,
   \item{pposneg}{An optional numeric p-value from a comparison between \bold{positive} and \bold{positive control} to be printed alongside the positive control treatments. Default is NULL. Please see details.}
   \item{stars}{Should significance stars ("***" for p < 0.001, "**" for p < 0.01, "*" for p < 0.05, and "n.s." otherwise) be plotted instead of p-values? Default is FALSE. Ignored if both pneg=NULL and ppos=NULL.}
   \item{pvalsize}{Size of the p-values or significance stars. Default is 3. Ignored if both pneg=NULL and ppos=NULL.}
+  \item{hlimits}{An optional vector of prediction limits (lower, upper) for a future single value to be presented as horizontal dotted lines. These limits can be computed from historical control data. Default is NULL.}
   \item{printN}{Should the cluster sizes be printed below the boxes? Default is TRUE.}
   \item{nsize}{Size of the sample size annotations (n and N). Default is 4.}
   \item{labelsize}{Size of the axis labels. Default is 11.}
