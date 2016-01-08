@@ -77,9 +77,18 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
   
   if(is.null(hlimits)==TRUE){
     hlim1 <- hlim2 <- geom_blank()
+    lilli <- ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
+                  max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
   }else{
     hlim1 <- geom_hline(y=hlimits[1], linetype=2)
     hlim2 <- geom_hline(y=hlimits[2], linetype=2)
+    if(hlim1 < hlim2){
+      lilli <- ylim(min(hlim1, min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10)),
+                    max(hlim2, max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10)))
+    }else{
+      lilli <- ylim(min(hlim2, min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10)),
+                    max(hlim1, max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10)))
+    }
   }
   
   if(white==FALSE){
@@ -117,8 +126,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-               max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+          lilli          
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -155,8 +163,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-               max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+          lilli       
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -192,8 +199,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-               max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+          lilli     
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -230,8 +236,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-             max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+        lilli   
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -267,8 +272,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-             max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+        lilli      
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -300,8 +304,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         pposnegtext +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-             max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+        lilli       
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -340,8 +343,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-               max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+          lilli       
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -378,8 +380,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-               max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+          lilli       
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -415,8 +416,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
           guides(shape=guide_legend(title=NULL)) +
           xlab(xlabel) +
           ylab(ylabel) +
-          ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-               max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+          lilli       
         if(white==F){
           if(printN==T){
             print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -453,8 +453,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(colour=guide_legend(title=NULL), shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-             max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+        lilli    
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -490,8 +489,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         guides(shape=guide_legend(title=NULL)) +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-             max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+        lilli     
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
@@ -523,8 +521,7 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
         pposnegtext +
         xlab(xlabel) +
         ylab(ylabel) +
-        ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
-             max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
+        lilli      
       if(white==F){
         if(printN==T){
           print(theplot + geom_text(data=dats, aes(y=-Inf, label=N), size=nsize, vjust=-2) + thetheme)
