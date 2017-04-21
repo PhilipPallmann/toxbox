@@ -1,0 +1,13 @@
+citHeader("Please cite the toxbox package in publications as follows:")
+
+citEntry(entry = "Article",
+         title = "Boxplots for grouped and clustered data in toxicology",
+         author = personList(person(given="Philip", family="Pallmann"), person(given="Ludwig A.", family="Hothorn")),
+         year = "2016",
+         volume = "90",
+         number = "7",
+         pages = "1631--1638",
+         journal = "Archives of Toxicology",
+         doi = "10.1007/s00204-015-1608-4",         
+         textVersion = paste("Pallmann P, Hothorn LA (2016) Boxplots for grouped and clustered data in toxicology. Archives of Toxicology, 90(7), 1631--1638. DOI: 10.1007/s00204-015-1608-4")
+         )

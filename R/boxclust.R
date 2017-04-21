@@ -80,8 +80,8 @@ boxclust <- function(data, outcome, treatment, cluster=NULL, covariate=NULL,
     lilli <- ylim(min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10),
                   max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10))        
   }else{
-    hlim1 <- geom_hline(y=hlimits[1], linetype=2)
-    hlim2 <- geom_hline(y=hlimits[2], linetype=2)
+    hlim1 <- geom_hline(yintercept=hlimits[1], linetype=2)
+    hlim2 <- geom_hline(yintercept=hlimits[2], linetype=2)
     lilli <- ylim(min(min(hlimits), min(min(dat$outcome), dats$mean - dats$sd) - diff(range(dat$outcome)/10)),
                   max(max(hlimits), max(max(dat$outcome), dats$mean + dats$sd) + diff(range(dat$outcome)/10)))
   }

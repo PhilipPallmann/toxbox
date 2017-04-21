@@ -1,8 +1,8 @@
 Package: toxbox
 Type: Package
 Title: Boxplots for Toxicological Data
-Version: 1.1.5
-Date: 2016-01-08
+Version: 1.1.6
+Date: 2017-04-21
 Authors@R: person("Philip", "Pallmann", email="p.pallmann@lancaster.ac.uk", role=c("aut", "cre"))
 Depends: ggplot2
 Imports: plyr

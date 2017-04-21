@@ -47,7 +47,9 @@ If p-values are to be printed, they should reasonably result from some Dunnett-t
 \value{
 A graphical display.
 }
-%\references{}
+\references{
+Pallmann, P., Hothorn, L. A. (2016) Boxplots for grouped and clustered data in toxicology. Archives of Toxicology, 90(7), 1631-1638.
+}
 \author{
 Philip Pallmann \email{pallmann@biostat.uni-hannover.de}
 }
